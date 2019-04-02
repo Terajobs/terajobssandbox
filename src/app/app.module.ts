@@ -17,5 +17,3 @@ export class AppModule { }
 
 
 // Comentario de Guillermo Alcaraz :v
-//Comentario de Brian Muñoz
-//Comentario de Jaylene Sevilla
