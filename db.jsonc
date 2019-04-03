@@ -52,7 +52,8 @@
         "estatus_vacante": 0,
         "estado_pais": 0,
         "ciudad": 0,
-        "campo_justificacion": "string, razon de rechazo"
+        "campo_justificacion": "string, razon de rechazo",
+        "porPaquete" : false
     },
     "estatus_vacante": {
         "id": 0,
