@@ -1,3 +1,33 @@
-<p>
-  login works!
-</p>
+{{diagnostic}}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+  content="852753087316-295vuuap3hqsdiife3jefabaqnr4rfj2.apps.googleusercontent.com ">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2"></script>
+
+<div class="container">
+  <h1>Login!</h1>
+  <form>
+    <div class="form-group">
+      <label for="email">Correo</label>
+      <input type="email" class="form-control" id="email" required [(ngModel)]="email" name="email" #name="ngModel">
+    </div>
+    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+      E-mail is required
+    </div>
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
+    </div>
+    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+      Password is required
+    </div>
+    <button type="submit" class="btn btn-success">Entrar</button>
+
+  </form>
+
+  <button type="button" class="btn btn-info">Sign up</button>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+</div>
