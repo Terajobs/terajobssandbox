@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   firebase: {
+=======
+    firebase: {
+>>>>>>> firebase-service
     apiKey: 'AIzaSyCiXe6QvA7yenOMe9FpDNVDU476dcXsMUA',
     authDomain: 'terajobsopsandbox.firebaseapp.com',
     databaseURL: 'https://terajobsopsandbox.firebaseio.com',
@@ -13,6 +17,7 @@ export const environment = {
     messagingSenderId: '852753087316'
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
