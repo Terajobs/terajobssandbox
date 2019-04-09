@@ -11,8 +11,8 @@ export class LoginComponent implements OnInit {
   email = '';
   password = '';
   constructor() {
-    
-   }
+
+  }
 
   ngOnInit() {
   }

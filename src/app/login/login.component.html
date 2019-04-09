@@ -1,10 +1,17 @@
 {{diagnostic}}
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id"
-  content="852753087316-295vuuap3hqsdiife3jefabaqnr4rfj2.apps.googleusercontent.com ">
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2"></script>
+
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id"
+    content="852753087316-295vuuap3hqsdiife3jefabaqnr4rfj2.apps.googleusercontent.com">
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2"></script>
+  <script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
+  <meta name="google-signin-scope" content="profile email">
+
+
+</head>
 
 <div class="container">
   <h1>Login!</h1>
@@ -23,11 +30,10 @@
     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
       Password is required
     </div>
-    <button type="submit" class="btn btn-success">Entrar</button>
+    <button type="submit" class="btn btn-success" style="width: 100%;">Entrar</button>
 
   </form>
-
-  <button type="button" class="btn btn-info">Sign up</button>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <br>
+  <button type="button" class="btn btn-info" style="width: 100%;">Sign up</button>
 
 </div>
