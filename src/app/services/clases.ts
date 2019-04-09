@@ -127,7 +127,6 @@ export class Usuario {
     nombre:                string;
     apellidoP:             string;
     apellidoM:             string;
-    correo:                string;
     password:              string;
     curp:                  string;
     rfc:                   RFC;

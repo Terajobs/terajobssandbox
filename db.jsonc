@@ -7,7 +7,6 @@
         "apellidoP": "string",
         "apellidoM": "string",
         "correo": "string",
-        "password": "string",
         "curp": "string",
         "rfc": {
             "rfc": "string",
