@@ -138,7 +138,7 @@ export class Usuario {
     estrellas:             number;
     calif_terajobs:        number;
     pasaporte:             boolean;
-    visa:                  boolean;
+    visa:                  boolean; 
     nivel_maximo_estudios: number;
     acepta_terms_conds:    boolean;
     habilidades:           Habilidad[];
@@ -181,8 +181,10 @@ export class Vacante {
     rango_inicial:       number;
     rango_final:         number;
     estatus_vacante:     number;
-    estado_pais:         number;
-    ciudad:              number;
+    estado_pais:         string;
+    ciudad:              string;
+    titulo:              string;
+    categoria:           string;
     campo_justificacion: string;
     constructor(data?: {}) {
         this.setData(data);
