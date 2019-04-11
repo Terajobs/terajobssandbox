@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 
 import { Usuario } from 'src/app/services/clases';
+import { reject } from 'q';
 
 
 @Injectable({
@@ -12,81 +13,108 @@ import { Usuario } from 'src/app/services/clases';
 })
 export class FirebaseService {
 
+  private rutas = {
+    usuarios: 'users/',
+  };
+
   constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase) { }
 
-  /* Registro de usuarios */
-  registerWithMail(email: string, password: string) {
-    this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password).then(
+  /* ----------------------Registro y login de usuarios---------------------------------------- */
+  registrarWithMail(email: string, password: string) {
+    return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password).then(
       (data) => {
-        console.log(data);
-        const user = new Usuario({
-          correo: data.user.email,
-          id: data.user.uid
-        });
-        this.registerUser(user);
+        return this.promesaLoginCorrecta(data);
       }
     ).catch((error) => {
-      alert('Hubo un error registrar correo');
-      console.log(error);
+      return this.errorEnPromesa(error);
     });
   }
 
-  registerWithFb() {
-    this.angularFireAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then(
-      (data) => {
-        console.log(data);
-        const user = new Usuario({
-          correo: data.user.email,
-          id: data.user.uid
-        });
-        this.registerUser(user);
-      }
-    ).catch((error) => {
-      alert('Hubo un error registrar facebook');
-      console.log(error);
-    });
-  }
-
-  registerWithGoogle() {
-    this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
-      (data) => {
-        console.log(data);
-        // data.additionalUserInfo.isNewUser
-        const user = new Usuario({
-          correo: data.user.email,
-          id: data.user.uid
-        });
-        this.registerUser(user);
-      }
-    ).catch((error) => {
-      alert('Hubo un error registrar google');
-      console.log(error);
-    });
-  }
-
-  registerUser(user: Usuario) {
-    // return this.angularFireDatabase.object('/users/' + user.id + '/').set(user);
-    this.angularFireDatabase.object('/users/' + user.id + '/').set(user).then(
-      (data) => {
-        console.log(data);
-      }
-    ).catch((error) => {
-      alert('Hubo un error registrar usuario');
-      console.log(error);
-    });
-  }
-
-  /* Login para usuarios */
   loginWithMail(email: string, password: string) {
-    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(
+      (data) => {
+        return this.promesaLoginCorrecta(data);
+      }
+    ).catch((error) => {
+      return this.errorEnPromesa(error);
+    });
   }
 
   loginWithFb() {
-
+    this.angularFireAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then(
+      (data) => {
+        return this.promesaLoginCorrecta(data);
+      }
+    ).catch((error) => {
+      return this.errorEnPromesa(error);
+    });
   }
 
   loginWithGoogle() {
-
+    return this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
+      (data) => {
+        return this.promesaLoginCorrecta(data);
+      }
+    ).catch((error) => {
+      return this.errorEnPromesa(error);
+    });
   }
+
+  private createUser(user: Usuario) {
+    return this.angularFireDatabase.object(this.rutas.usuarios + user.id + '/').set(user);
+  }
+
+  updateUser(user: Usuario) {
+    return this.angularFireDatabase.object(this.rutas.usuarios + user.id + '/').update(user);
+  }
+
+  getUsers() {
+    return new Promise(resolve => {
+      this.angularFireDatabase.list(this.rutas.usuarios).snapshotChanges().subscribe(actionArray => {
+        console.log(actionArray);
+        resolve(actionArray.map(item => {
+          return new Usuario(item.payload.val());
+        }));
+      });
+    });
+  }
+
+  private promesaLoginCorrecta(data: auth.UserCredential) {
+    const user = new Usuario({
+      correo: data.user.email,
+      id: data.user.uid
+    });
+    if (data.additionalUserInfo.isNewUser) { // Si es un nuevo usuario
+      return this.createUser(user).then(  // registrarlo
+        (data2) => {
+          return {
+            error: false,
+            user: user,
+            data: data,
+            new_user: true
+
+          };
+        }
+      ).catch((error) => {
+        console.log('Hubo un error registrar usuario');
+        return this.errorEnPromesa(error);
+      });
+    } else {  // si el usuario ya habia sido registrado
+      return 'En mantenimiento';
+    }
+  }
+
+  private errorEnPromesa(error: any): {} {
+    return {
+      error: true,
+      data: error
+    };
+  }
+
+
+  /* Vacantes */
+/*   registrarVacante() {
+
+  } */
 
 }
