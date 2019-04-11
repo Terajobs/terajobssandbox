@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import { Usuario } from 'src/app/services/clases';
-import { reject } from 'q';
-
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +16,11 @@ export class FirebaseService {
     usuarios: 'users/',
   };
 
-  constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase) { }
+  constructor(private fireAuth: AngularFireAuth, private fireDatabase: AngularFireDatabase, private fireStorage: AngularFireStorage) { }
 
   /* ----------------------Registro y login de usuarios---------------------------------------- */
   registrarWithMail(email: string, password: string) {
-    return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password).then(
+    return this.fireAuth.auth.createUserWithEmailAndPassword(email, password).then(
       (data) => {
         return this.promesaLoginCorrecta(data);
       }
@@ -31,7 +30,7 @@ export class FirebaseService {
   }
 
   loginWithMail(email: string, password: string) {
-    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(
+    return this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(
       (data) => {
         return this.promesaLoginCorrecta(data);
       }
@@ -41,7 +40,7 @@ export class FirebaseService {
   }
 
   loginWithFb() {
-    this.angularFireAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then(
+    this.fireAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()).then(
       (data) => {
         return this.promesaLoginCorrecta(data);
       }
@@ -51,7 +50,7 @@ export class FirebaseService {
   }
 
   loginWithGoogle() {
-    return this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
+    return this.fireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
       (data) => {
         return this.promesaLoginCorrecta(data);
       }
@@ -61,16 +60,16 @@ export class FirebaseService {
   }
 
   private createUser(user: Usuario) {
-    return this.angularFireDatabase.object(this.rutas.usuarios + user.id + '/').set(user);
+    return this.fireDatabase.object(this.rutas.usuarios + user.id + '/').set(user);
   }
 
   updateUser(user: Usuario) {
-    return this.angularFireDatabase.object(this.rutas.usuarios + user.id + '/').update(user);
+    return this.fireDatabase.object(this.rutas.usuarios + user.id + '/').update(user);
   }
 
   getUsers() {
     return new Promise(resolve => {
-      this.angularFireDatabase.list(this.rutas.usuarios).snapshotChanges().subscribe(actionArray => {
+      this.fireDatabase.list(this.rutas.usuarios).snapshotChanges().subscribe(actionArray => {
         console.log(actionArray);
         resolve(actionArray.map(item => {
           return new Usuario(item.payload.val());
@@ -109,6 +108,15 @@ export class FirebaseService {
       error: true,
       data: error
     };
+  }
+
+  subirArchivo(file: any) {
+    const ref = this.fireStorage.ref('/files');
+    const task = ref.put(file);
+    /* const uploadState = task.snapshotChanges().pipe(map(s => s.state)); */
+    const uploadProgress = task.percentageChanges();
+    /* const downloadURL = task.downloadURL(); */
+
   }
 
 
