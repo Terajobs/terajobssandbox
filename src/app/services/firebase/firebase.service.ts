@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { Usuario } from 'src/app/services/clases';
+import { Usuario, Vacante, Oferta, Habilidad } from 'src/app/services/clases';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,9 @@ export class FirebaseService {
 
   private rutas = {
     usuarios: 'users/',
+    vacantes: 'vacantes/',
+    ofertas: 'ofertas/',
+    habilidades: 'habilidades/'
   };
 
   constructor(private fireAuth: AngularFireAuth, private fireDatabase: AngularFireDatabase, private fireStorage: AngularFireStorage) { }
@@ -59,7 +62,8 @@ export class FirebaseService {
     });
   }
 
-  private createUser(user: Usuario) {
+  /* --------------------------------------Usuario---------------------------------------------- */
+  private createUser(user: Usuario) { // mandado a llmar al registrar
     return this.fireDatabase.object(this.rutas.usuarios + user.id + '/').set(user);
   }
 
@@ -78,6 +82,86 @@ export class FirebaseService {
     });
   }
 
+/* ----------------------------------Vacante-------------------------------------------------- */
+  createVacante(vacante: Vacante) {
+    // return this.fireDatabase.object(this.rutas.vacantes + vacante.id + '/').set(vacante);
+    const obj = this.fireDatabase.database.ref(this.rutas.vacantes).push(vacante);
+    vacante.id = obj['key'].toString();
+    this.updateVacante(vacante);
+  }
+
+  updateVacante(vacante: Vacante) {
+    return this.fireDatabase.object(this.rutas.vacantes + vacante.id + '/').update(vacante);
+  }
+
+  getVacantes() {
+    return new Promise(resolve => {
+      this.fireDatabase.list(this.rutas.vacantes).snapshotChanges().subscribe(actionArray => {
+        console.log(actionArray);
+        resolve(actionArray.map(item => {
+          return new Vacante(item.payload.val());
+        }));
+      });
+    });
+  }
+
+  /* ----------------------------------Ofertas-------------------------------------------------- */
+  createOferta(oferta: Oferta) {
+    const obj = this.fireDatabase.database.ref(this.rutas.ofertas).push(oferta);
+    oferta.id = obj['key'].toString();
+    this.updateOferta(oferta);
+  }
+
+  updateOferta(oferta: Oferta) {
+    return this.fireDatabase.object(this.rutas.ofertas + oferta.id + '/').update(oferta);
+  }
+
+  getOfertas() {
+    return new Promise(resolve => {
+      this.fireDatabase.list(this.rutas.ofertas).snapshotChanges().subscribe(actionArray => {
+        console.log(actionArray);
+        resolve(actionArray.map(item => {
+          return new Oferta(item.payload.val());
+        }));
+      });
+    });
+  }
+
+    /* ----------------------------------Habilidad-------------------------------------------------- */
+    createHabilidad(habilidad: Habilidad) {
+      const obj = this.fireDatabase.database.ref(this.rutas.habilidades).push(habilidad);
+      habilidad.id = obj['key'].toString();
+      this.updateHabilidad(habilidad);
+    }
+
+    updateHabilidad(habilidad: Habilidad) {
+      return this.fireDatabase.object(this.rutas.habilidades + habilidad.id + '/').update(habilidad);
+    }
+
+    getHabilidades() {
+      return new Promise(resolve => {
+        this.fireDatabase.list(this.rutas.habilidades).snapshotChanges().subscribe(actionArray => {
+          console.log(actionArray);
+          resolve(actionArray.map(item => {
+            return new Habilidad(item.payload.val());
+          }));
+        });
+      });
+    }
+
+
+  /* ---------------------------------------------------------------------------- */
+  subirArchivo(file: any) {
+    const ref = this.fireStorage.ref('/files');
+    const task = ref.put(file);
+    /* const uploadState = task.snapshotChanges().pipe(map(s => s.state)); */
+    const uploadProgress = task.percentageChanges();
+    /* const downloadURL = task.downloadURL(); */
+
+  }
+
+
+  /* -------Metodos para manejar promesas de login-------------- */
   private promesaLoginCorrecta(data: auth.UserCredential) {
     const user = new Usuario({
       correo: data.user.email,
@@ -109,20 +193,5 @@ export class FirebaseService {
       data: error
     };
   }
-
-  subirArchivo(file: any) {
-    const ref = this.fireStorage.ref('/files');
-    const task = ref.put(file);
-    /* const uploadState = task.snapshotChanges().pipe(map(s => s.state)); */
-    const uploadProgress = task.percentageChanges();
-    /* const downloadURL = task.downloadURL(); */
-
-  }
-
-
-  /* Vacantes */
-/*   registrarVacante() {
-
-  } */
 
 }
