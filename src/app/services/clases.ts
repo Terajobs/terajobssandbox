@@ -1,5 +1,5 @@
 export class Accion {
-    id:          number;
+    id:          string;
     descripcion: string;
     constructor(data?: {}) {
         this.setData(data);
@@ -10,7 +10,7 @@ export class Accion {
 }
 
 export class Actividad {
-    id:     number;
+    id:     string;
     accion: string;
     constructor(data?: {}) {
         this.setData(data);
@@ -21,7 +21,7 @@ export class Actividad {
 }
 
 export class Aplicante {
-    id_vacante: number;
+    id_vacante: string;
     id_usuario: string;
     estatus:    number;
     activo:     boolean;
@@ -34,7 +34,7 @@ export class Aplicante {
 }
 
 export class Categoria {
-    id:     number;
+    id:     string;
     nombre: string;
     constructor(data?: {}) {
         this.setData(data);
@@ -69,7 +69,7 @@ export class Ciudad {
 }
 
 export class CodigoPromocion {
-    id:          number;
+    id:          string;
     codigo:      string;
     descripcion: string;
     usos:        number;
@@ -95,7 +95,7 @@ export class Log {
 }
 
 export class Oferta {
-    id:       number;
+    id:       string;
     imagen:   string;
     producto: string;
     cantidad: number;
@@ -152,7 +152,8 @@ export class Usuario {
 }
 
 export class Habilidad {
-    habilidad:  string;
+    id: string;
+    nombre:  string;
     porcentaje: number;
     categoria:  number;
     constructor(data?: {}) {
@@ -175,7 +176,7 @@ export class RFC {
 }
 
 export class Vacante {
-    id:                  number;
+    id:                  string;
     id_reclutador:       number;
     descripcion:         string;
     rango_inicial:       number;

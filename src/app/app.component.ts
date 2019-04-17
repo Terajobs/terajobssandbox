@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from './services/firebase/firebase.service';
-import { Usuario, RFC } from './services/clases';
+import { Usuario, RFC, Vacante, Oferta, Habilidad } from './services/clases';
 
 
 @Component({
@@ -55,6 +55,36 @@ export class AppComponent {
         console.log(value);
       }
     ); */
+
+    /* firebase.createVacante(new Vacante({
+      campoJustificacion: true,
+      categoria: 'Consultante',
+      estado: 'Guanajuato',
+      nombreReclutador: 'Guadalupe Sierra',
+      rangoFinal: 30000,
+      rangoInicial: 2500,
+      titulo: 'Consultant'
+    })); */
+
+    firebase.getHabilidades().then(
+      (value) => {
+        console.log(value);
+      }
+    );
+
+    /* firebase.createOferta(new Oferta({
+      imagen: 'alguna url',
+      producto: 'blabla',
+      cantidad: 40,
+      precio: 40000
+    })); */
+
+    /* firebase.createHabilidad(new Habilidad({
+      habilidad: 'Assembly',
+      porcentaje: 100,
+      categoria: 'Programacion'
+    })); */
+
   }
 
 
