@@ -7,7 +7,6 @@
         "apellidoP": "string",
         "apellidoM": "string",
         "correo": "string",
-        "password": "string",
         "curp": "string",
         "rfc": {
             "rfc": "string",
@@ -26,7 +25,7 @@
         "acepta_terms_conds": true,
         "habilidades": [
             {
-                "habilidad": "string",
+                "nombre": "string",
                 "porcentaje": 0,
                 "categoria": 0
             }
@@ -34,7 +33,7 @@
         "cv": "string, referencia de archivo"
     },
     "niveles_estudios": {
-        "id": 0,
+        "id": "string",
         "descripcion": "string"
     },
     "reclutadores": {
@@ -44,7 +43,7 @@
         "vacantes_disponibles": 0
     },
     "vacantes": {
-        "id": 0,
+        "id": "string",
         "id_reclutador": 0,
         "descripcion": "string",
         "rango_inicial": 0.0,
@@ -56,25 +55,25 @@
         "porPaquete" : false
     },
     "estatus_vacante": {
-        "id": 0,
+        "id": "string",
         "descripcion": "string"
     },
     "aplicantes": {
-        "id_vacante": 0,
+        "id_vacante": "string",
         "id_usuario": "string, uid",
         "estatus": 0,
         "activo": true
     },
     "estatus_aplicante": {
-        "id": 0,
+        "id": "string",
         "descripcion": "string"
     },
     "estados_paises": {
-        "id": 0,
+        "id": "string",
         "nombre": "string"
     },
     "actividades": {
-        "id": 0,
+        "id": "string",
         "accion": "string"
     },
     "chats": {
@@ -84,21 +83,21 @@
         "mensaje": "string"
     },
     "ofertas": {
-        "id": 0,
+        "id": "string",
         "imagen": "string",
         "producto": "string",
         "cantidad": 0,
         "precio": 0.0
     },
     "codigos_promociones": {
-        "id": 0,
+        "id": "string",
         "codigo": "string",
         "descripcion": "string",
         "usos": 0,
         "vigencia": "string, fecha"
     },
     "categorias": {
-        "id": 0,
+        "id": "string",
         "nombre": "string"
     },
     "ciudades": {
@@ -111,7 +110,7 @@
         "fecha": "fecha y hora"
     },
     "acciones": {
-        "id": 0,
+        "id": "string",
         "descripcion": "string"
     }
 }

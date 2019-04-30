@@ -1,37 +1,72 @@
 <head>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id"
-    content="852753087316-295vuuap3hqsdiife3jefabaqnr4rfj2.apps.googleusercontent.com">
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-    src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2"></script>
-  <script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
-  <meta name="google-signin-scope" content="profile email">
-
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+ 
+  
+    <meta name="google-signin-scope" content="profile email" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <div class="container">
-  <h1>Login!</h1>
-  <form>
-    <div class="form-group">
-      <label for="email">Correo</label>
-      <input [(ngModel)]="email" type="email" class="form-control" id="email" required [(ngModel)]="email" name="email" #name="ngModel">
-    </div>
-    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-      E-mail is required
-    </div>
-    <div class="form-group">
-      <label for="password">Contraseña</label>
-      <input [(ngModel)]="password" type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
-    </div>
-    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-      Password is required
-    </div>
-    <button type="submit" class="btn btn-success" style="width: 100%;">Entrar</button>
-
-  </form>
-  <br>
-  <button type="button" class="btn btn-info" style="width: 100%;">Sign up</button>
-
+    <h1>Login!</h1>
+    <form>
+        <div class="form-group">
+            <label for="email">Correo</label>
+            <input
+                [(ngModel)]="email"
+                type="email"
+                class="form-control"
+                id="email"
+                required
+                [(ngModel)]="email"
+                name="email"
+                #name="ngModel"
+            />
+        </div>
+        <div
+            [hidden]="email.valid || email.pristine"
+            class="alert alert-danger"
+        >
+            E-mail is required
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input
+                [(ngModel)]="password"
+                type="password"
+                class="form-control"
+                id="password"
+                required
+                [(ngModel)]="password"
+                name="password"
+            />
+        </div>
+        <div
+            [hidden]="password.valid || password.pristine"
+            class="alert alert-danger"
+        >
+            Password is required
+        </div>
+        <button
+            (click)="doLogin()"
+            type="submit"
+            class="btn btn-success"
+            style="width: 100%;"
+        >
+            Entrar
+        </button>
+    </form>
+    <br>
+    <button style="width: 100%;" (click)="doLoginFB()">
+      <a class="btn btn-block btn-social btn-facebook">
+        <span class="fa fa-facebook"></span> Sign in with FB
+      </a>
+    </button>
+    <br>
+    <button  style="width: 100%;" (click)="doLoginGoogle()">
+      <a class="btn btn-block btn-social btn-google">
+        <span class="fa fa-google"></span> Sign in with Google
+      </a>
+    </button>
+    
 </div>
+
