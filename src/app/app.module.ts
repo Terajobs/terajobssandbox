@@ -16,12 +16,15 @@ import { environment } from '../environments/environment';
 const appRoutes: Routes = [
   { path: '', component: RegistrocandidatoComponent },
   { path: 'registro_candidato', component: RegistrocandidatoComponent },
+  {path: 'login', component:LoginComponent},
 
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    RegistrocandidatoComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,6 @@ const appRoutes: Routes = [
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    LoginComponent,
 
   ],
   providers: [],
