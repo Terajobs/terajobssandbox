@@ -34,13 +34,8 @@ export class LoginComponent implements OnInit {
   }
 
   doLoginFB() {
-    this.servicio.loginWithGoogle().then(data => {
-
-    }, error => {
-
-    });
+    this.servicio.loginWithFb();
   }
-
   doLoginGoogle() {
     this.servicio.loginWithGoogle().then(data => {
 
