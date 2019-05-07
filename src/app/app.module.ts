@@ -15,33 +15,27 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 const appRoutes: Routes = [
-  { path: '', component: RegistrocandidatoComponent },
-  { path: 'registro_candidato', component: RegistrocandidatoComponent },
-  {path: 'login', component:LoginComponent},
-
+    { path: '', component: RegistrocandidatoComponent },
+    { path: 'registro_candidato', component: RegistrocandidatoComponent },
+    { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegistrocandidatoComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    FormsModule,
-    ImageCropperModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule, // imports firebase/storage only needed for storage features
-  ],
-  providers: [AngularFireDatabase],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, LoginComponent, RegistrocandidatoComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes),
+        FormsModule,
+        ImageCropperModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+        AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+        AngularFireStorageModule // imports firebase/storage only needed for storage features
+    ],
+    providers: [AngularFireDatabase],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
-
+export class AppModule {}
 
 // Comentario de Guillermo Alcaraz :v
 // Comentario de Brian Muñoz
