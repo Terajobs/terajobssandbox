@@ -1,0 +1,12 @@
+<form [formGroup]="categorieForm">
+  <select formControlName="categorieControl" [(ngModel)]="opcionSeleccionado" (change)="onUserSelected()">
+    <option [value]="categorie" *ngFor="let categorie of CATE">{{categorie}}</option>
+  </select>
+ </form>
+<br>
+<br>
+<form [formGroup]="placeForm">
+  <select formControlName="placeControl" [(ngModel)]="opcionSeleccion" (change)="onSelected()">
+    <option [value]="place" *ngFor="let place of LU">{{place}}</option>
+  </select>
+ </form>
