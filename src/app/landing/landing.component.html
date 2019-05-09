@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en"> <!-- cambiar a español -->
+<html>
 
 <head>
 
@@ -10,30 +10,29 @@
 
   <title>Terajobs</title>
 
-  <!-- Bootstrap core CSS -->
-  <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Los archivos locales de css son llamados con sus rutas desde landing.component.ts dentro del arreglo de estilos -->
+ <!-- en lugar de hacer algo como: <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
 
-  <!-- Custom fonts for this template -->
-  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- estilos de fuente para el template -->
+
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
 
-  <!-- Custom styles for this template -->
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 </head>
 
 <body id="page-top">
 
-  <!-- Navigation -->
+  <!-- Navegacion, barra superior  -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" >Terajobs</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
+        Menu  <!-- elemento responsivo, el menú aparece cuando la navbar no cabe en la pantalla  -->
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -66,7 +65,8 @@
     </div>
   </header>
 
-  <!-- Services -->
+<!-- servicios terajobs -->
+
   <section id="services">
     <div class="container">
       <div class="row">
@@ -104,7 +104,7 @@
     </div>
   </section>
 
-  <!-- Portfolio Grid -->
+  <!-- Portafolio de ofertas, falta integrarlo con la base de datos, si es que se mantiene en la landing page ese apartado -->
   <section class="bg-light" id="portfolio">
     <div class="container">
       <div class="row">
@@ -121,7 +121,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="../assets/img/portfolio/01-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../assets/img/portfolio/01-thumbnail.jpg" alt=""> <!--  las iagenes deben estar en assets para poder ser referenciadas  -->
           </a>
           <div class="portfolio-caption">
             <h4>Gerente tienda de ropa</h4>
@@ -202,11 +202,12 @@
     </div>
   </section>
 
-  <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+<!-- precios -->
+  <!-- este snipet tiene como dependencia font awesome 5 free, se puede descargar de fontawesome.io -->
+  <!-- free tier -->
   <section class="bg-light" id="team">
     <div class="container">
       <div class="row">
-        <!-- Free Tier -->
         <div class="col-lg-4">
           <div class="card mb-5 mb-lg-0">
             <div class="card-body">
@@ -273,7 +274,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contacto -->
   <section id="contact">
     <div class="container">
       <div class="row">
@@ -358,7 +359,7 @@
     </div>
   </footer>
 
-  <!-- Portfolio Modals -->
+  <!-- Portfolio Modals, necesitan js para mostrarse al hacer click en los thumbnails-->
 
   <!-- Modal 1 -->
   <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
@@ -373,7 +374,7 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
+                <!-- Los detalles del proyecto van aqui -->
                 <h2 class="text-uppercase">Gerente tienda de ropa</h2>
                 <p class="item-intro text-muted">Gerente para la tienda ubicada en X</p>
                 <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/01-full.jpg" alt="">
@@ -408,7 +409,6 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
                 <h2 class="text-uppercase">Diseñador(a) gráfico</h2>
                 <p class="item-intro text-muted">Diseño</p>
                 <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/graphic-design-cape-town.jpg" alt="">
@@ -442,7 +442,6 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
                 <h2 class="text-uppercase">Project Name</h2>
                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                 <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/03-full.jpg" alt="">
@@ -476,7 +475,6 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
                 <h2 class="text-uppercase">Project Name</h2>
                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                 <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/04-full.jpg" alt="">
@@ -510,7 +508,6 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
                 <h2 class="text-uppercase">Project Name</h2>
                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                 <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/05-full.jpg" alt="">
@@ -544,7 +541,7 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
-                <!-- Project Details Go Here -->
+
                 <h2 class="text-uppercase">Project Name</h2>
                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                 <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/06-full.jpg" alt="">
@@ -581,13 +578,6 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
 
 
 <!-- <!DOCTYPE html> -->
