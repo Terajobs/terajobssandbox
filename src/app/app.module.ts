@@ -1,29 +1,38 @@
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { RegistrocandidatoComponent } from './registrocandidato/registrocandidato.component';
 import { FormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { AngularFireModule } from '@angular/fire';
+
+// Componentes
+import { AppComponent } from './app.component';
+import { RegistrocandidatoComponent } from './registrocandidato/registrocandidato.component';
+import { VacanteDetalleComponent } from './vacante/vacante-detalle/vacante-detalle.component';
+import { VacantesListadoComponent } from './vacante/vacantes-listado/vacantes-listado.component';
+
+// Firebase
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
+//import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
+//import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireDatabaseModule} from '@angular/fire/database';//
 
 const appRoutes:Routes= [
   {path:'',component:RegistrocandidatoComponent},
   {path:'registro_candidato', component:RegistrocandidatoComponent},
-
+  {path:'app-vacante-detalle', component:VacanteDetalleComponent},
+  {path:'app-vacantes-listado', component:VacantesListadoComponent},
 ]
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrocandidatoComponent
+    RegistrocandidatoComponent,
+    VacanteDetalleComponent,
+    VacantesListadoComponent,
   ],
   imports: [
     BrowserModule,

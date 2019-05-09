@@ -1,0 +1,30 @@
+<!-- Para mostrar el listado de las vacantes -->
+<table border="0" id="tabla" *ngFor="let vacante of vacantes" >
+  <tr id="fila1" >
+    <td colspan="2" >
+      <h3> {{ vacante.titulo }} </h3>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      {{ vacante.descripcion }}
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <button (click)="navigate(vacante);">  
+        Mostrar detalles de la vacante!
+      </button>
+    </td>
+
+    <td>
+      <button name="EliminarSugerencias">
+        Eliminar sugerencia
+      </button>
+    </td>
+  </tr>
+</table>
+
+<br>
