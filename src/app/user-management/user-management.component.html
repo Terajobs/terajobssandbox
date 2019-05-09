@@ -1,0 +1,40 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<div class="container">
+<form>
+    <div class="form-group">
+        <label for="email">Correo</label>
+        <input
+            [(ngModel)]="email"
+            type="email"
+            class="form-control"
+            id="email"
+            required
+            [(ngModel)]="email"
+            name="email"
+            #name="ngModel"
+        />
+    </div>
+    <div
+        [hidden]="email.valid || email.pristine"
+        class="alert alert-danger"
+    >
+      E-mail Requerido
+    </div>
+
+  </form>
+
+<button
+style="width: 100%;"
+    (click)="doPassReset()"
+    type="submit"
+    class="btn btn-success"
+    style="width: 100%;"
+    text="Cambiar Contraseña"
+>
+    
+</button>
+
+</div>

@@ -1,0 +1,116 @@
+//Definicion de base de datos de terajobs
+{
+    "usuarios": {
+        "id": "string", //Este sera el uid que le asigna firebase a los usuarios
+        "username": "string",
+        "nombre": "string",
+        "apellidoP": "string",
+        "apellidoM": "string",
+        "correo": "string",
+        "curp": "string",
+        "rfc": {
+            "rfc": "string",
+            "validado": true
+        },
+        "telefono": "string",
+        "estado_pais": 0,
+        "edad": 0,
+        "genero": "string",
+        "foto": "string",
+        "estrellas": 0,
+        "calif_terajobs": 0,
+        "pasaporte": true,
+        "visa": true,
+        "nivel_maximo_estudios": 0,
+        "acepta_terms_conds": true,
+        "habilidades": [
+            {
+                "nombre": "string",
+                "porcentaje": 0,
+                "categoria": 0
+            }
+        ],
+        "cv": "string, referencia de archivo"
+    },
+    "niveles_estudios": {
+        "id": "string",
+        "descripcion": "string"
+    },
+    "reclutadores": {
+        "id_usuario": "string, uid",
+        "forma_pago": "string",
+        "creditos": 0.0,
+        "vacantes_disponibles": 0
+    },
+    "vacantes": {
+        "id": "string",
+        "id_reclutador": 0,
+        "descripcion": "string",
+        "rango_inicial": 0.0,
+        "rango_final": 0.0,
+        "estatus_vacante": 0,
+        "estado_pais": 0,
+        "ciudad": 0,
+        "campo_justificacion": "string, razon de rechazo",
+        "porPaquete" : false
+    },
+    "estatus_vacante": {
+        "id": "string",
+        "descripcion": "string"
+    },
+    "aplicantes": {
+        "id_vacante": "string",
+        "id_usuario": "string, uid",
+        "estatus": 0,
+        "activo": true
+    },
+    "estatus_aplicante": {
+        "id": "string",
+        "descripcion": "string"
+    },
+    "estados_paises": {
+        "id": "string",
+        "nombre": "string"
+    },
+    "actividades": {
+        "id": "string",
+        "accion": "string"
+    },
+    "chats": {
+        "id_remitente": "string uid",
+        "id_destinatario": "string uid",
+        "fecha": "fecha y hora",
+        "mensaje": "string"
+    },
+    "ofertas": {
+        "id": "string",
+        "imagen": "string",
+        "producto": "string",
+        "cantidad": 0,
+        "precio": 0.0
+    },
+    "codigos_promociones": {
+        "id": "string",
+        "codigo": "string",
+        "descripcion": "string",
+        "usos": 0,
+        "vigencia": "string, fecha"
+    },
+    "categorias": {
+        "id": "string",
+        "nombre": "string"
+    },
+    "ciudades": {
+        "id": "string",
+        "nombre": "string"
+    },
+    "logs": {
+        "id_usuario": "string",
+        "accion": 0,
+        "fecha": "fecha y hora"
+    },
+    "acciones": {
+        "id": "string",
+        "descripcion": "string"
+    }
+}
