@@ -1,7 +1,7 @@
 # terajobssandbox
 Sandbox terajobs
 
-##Instalacion
+## Instalacion
 git clone https://github.com/Terajobs/terajobssandbox
 cd terajobssandbox/
 npm install
