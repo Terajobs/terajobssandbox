@@ -27,9 +27,10 @@ import { AngularFireModule } from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes= [
-  {path:'',component:RegistrocandidatoComponent},
+  {path:'',component:HomeComponent},
   {path:'registro_candidato', component:RegistrocandidatoComponent},
   {path:'app-vacante-detalle', component:VacanteDetalleComponent},
   {path:'app-vacantes-listado', component:VacantesListadoComponent},
@@ -46,7 +47,8 @@ const appRoutes:Routes= [
     LoginComponent,
     RegistrocandidatoComponent,
     FiltrosComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

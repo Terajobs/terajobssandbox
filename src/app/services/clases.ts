@@ -143,6 +143,9 @@ export class Usuario {
     acepta_terms_conds:    boolean;
     habilidades:           Habilidad[];
     cv:                    string;
+    
+    fecha_nacimiento:      string;
+    email:                 string;
     constructor(data?: {}) {
         this.setData(data);
     }
