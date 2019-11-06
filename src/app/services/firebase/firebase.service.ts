@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Subject } from 'rxjs';
 
 import { Usuario, Vacante, Oferta, Habilidad } from 'src/app/services/clases';
 
@@ -11,6 +12,8 @@ import { Usuario, Vacante, Oferta, Habilidad } from 'src/app/services/clases';
   providedIn: 'root'
 })
 export class FirebaseService {
+  VACANTES;
+  dataSubject$ = new Subject<any>();
 
   private rutas = {
     usuarios: 'users/',
@@ -105,6 +108,27 @@ export class FirebaseService {
     });
   }
 
+  getVacant() {
+    return this.dataSubject$.asObservable();
+}
+
+
+  /* ----------------------------------Filtro-------------------------------------------------- */
+
+  getDataFilter(palabra: string, categorie: string) {
+    var objectData = {};
+    this.fireDatabase.database.ref('vacantes')
+        .orderByChild(categorie)
+        .equalTo(palabra)
+        .on('value', snap => {
+        objectData = snap.val();
+    });   
+    let obj = Object.values(objectData);
+    this.dataSubject$.next(obj);
+/*     console.log(objectData);
+ */
+}
+
   /* ----------------------------------Ofertas-------------------------------------------------- */
   createOferta(oferta: Oferta) {
     const obj = this.fireDatabase.database.ref(this.rutas.ofertas).push(oferta);
@@ -160,13 +184,9 @@ export class FirebaseService {
 
   }
 
-  /*********************** resetear contraseña ******************/
-
   resetPasswordInit(email: string) {
-      return this.fireAuth.auth.sendPasswordResetEmail(email);
-      }  //debe de mandar a un html (faltante) para escribir contraseña
-        // la ruta se pone en firebase console.
-
+    return this.fireAuth.auth.sendPasswordResetEmail(email);
+  }
 
 
   /* -------Metodos para manejar promesas de login-------------- */

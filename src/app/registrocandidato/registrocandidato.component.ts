@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { debug } from 'util';
+import { Usuario } from '../services/clases';
 
 @Component({
   selector: 'app-registrocandidato',
@@ -32,17 +33,18 @@ export class RegistrocandidatoComponent implements OnInit {
 
   registrar(){
     
-    const user = [
-      this.username,
-      this.email,
-      this.telefono,
-      this.fecha_nacimiento,
-      this.estado,
-      this.genero
-    ];
-    console.log(user);
-    console.log(this.crear_curriculum);
+    var usuario = new Usuario;
 
+    usuario.username = this.username;
+    usuario.email = this.email;
+    usuario.telefono = this.telefono;
+    usuario.fecha_nacimiento = this.fecha_nacimiento;
+    // usuario.estado_pais = this.estado; Cambiar el tipo de dato string a number
+    // TODO: Verificar lo del estadado, fecha de nacimiento, etc, se encuentra en 
+    usuario.genero = this.genero;
+    
+    console.log(usuario);
+    console.log(this.crear_curriculum);
   }
   
   guardarCV(){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   email = '';
   password = '';
-  constructor(public servicio: FirebaseService) {
+  constructor(public servicio: FirebaseService, private router: Router) {
 
   }
 
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
   doLoginGoogle() {
     this.servicio.loginWithGoogle().then(data => {
-
+      this.router.navigate(['registro_candidato']);
     }, error => {
 
     });
