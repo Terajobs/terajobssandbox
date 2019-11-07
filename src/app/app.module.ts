@@ -29,16 +29,17 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'registro_candidato', component: RegistrocandidatoComponent },
+  { path: 'registro_candidato/:id', component: RegistrocandidatoComponent },
   {path: 'login', component:LoginComponent},
   {path: 'pass', component:UserManagementComponent},
   {path: 'landing', component:LandingComponent},
   {path:'app-vacante-detalle', component:VacanteDetalleComponent},
   {path:'app-vacantes-listado', component:VacantesListadoComponent},
-
+  {path: 'register', component:RegisterComponent}
 ];
 
 
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     VacantesListadoComponent,
     FiltrosComponent,
     BusquedaComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

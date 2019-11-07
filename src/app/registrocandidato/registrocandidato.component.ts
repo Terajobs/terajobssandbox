@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { debug } from 'util';
 import { Usuario } from '../services/clases';
+import { ActivatedRoute } from "@angular/router";
+import { FirebaseService } from '../services/firebase/firebase.service';
 
 @Component({
   selector: 'app-registrocandidato',
@@ -10,6 +12,7 @@ import { Usuario } from '../services/clases';
 })
 export class RegistrocandidatoComponent implements OnInit {
 
+  id: string;
   username:string = "";
   email:string = "";
   telefono:string = "";
@@ -26,9 +29,11 @@ export class RegistrocandidatoComponent implements OnInit {
   crear_curriculum:boolean = false;
   value: string = '';
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, public servicio: FirebaseService) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get("id");
+    console.log(this.id);
   }
 
   registrar(){
@@ -36,15 +41,27 @@ export class RegistrocandidatoComponent implements OnInit {
     var usuario = new Usuario;
 
     usuario.username = this.username;
-    usuario.email = this.email;
+    // usuario.email = this.email;
     usuario.telefono = this.telefono;
     usuario.fecha_nacimiento = this.fecha_nacimiento;
-    // usuario.estado_pais = this.estado; Cambiar el tipo de dato string a number
+    usuario.estado_pais = this.estado; 
     // TODO: Verificar lo del estadado, fecha de nacimiento, etc, se encuentra en 
     usuario.genero = this.genero;
-    
+    usuario.id = this.id;
+    // usuario.estado_pais
+
+
     console.log(usuario);
-    console.log(this.crear_curriculum);
+    this.servicio.updateUser(usuario).then(
+      (data) => {
+        console.log(data);
+        console.log('correcto');
+      }
+    ).catch((error) => {
+      console.log(error);
+    });
+
+    // console.log(this.crear_curriculum);
   }
   
   guardarCV(){

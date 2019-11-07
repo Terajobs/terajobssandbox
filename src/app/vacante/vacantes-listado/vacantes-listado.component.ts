@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-// Service
-import { VacanteService } from '../../services/vacante/vacante.service'
-
 // Class
 import { Vacante } from '../../services/clases';
 
 // Permite el paso de parametros entre componentes atraves de las rutas
 import { Router, NavigationExtras } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-vacantes-listado',
   templateUrl: './vacantes-listado.component.html',
   styleUrls: ['./vacantes-listado.component.scss'],
-  providers: [VacanteService]
 })
 export class VacantesListadoComponent implements OnInit {
 
@@ -29,7 +26,7 @@ export class VacantesListadoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private vacanteService: VacanteService
+    private vacanteService: FirebaseService
     ) { }
 
   ngOnInit() {
@@ -38,7 +35,14 @@ export class VacantesListadoComponent implements OnInit {
 
   // Esta funcion llena el arreglo con todas las vacantes disponibles en la base de datos
   todasLasVacantes(){
-    this.vacanteService.obtenerVacantes().valueChanges().subscribe(vacantes => this.vacantes = vacantes);
+    this.vacanteService.getVacantes().then(
+      (data) => {
+        console.log(data);
+        this.vacantes = data;
+      }
+    ).catch((error) => {
+      console.log(error);
+    });
   }
 
   /* Con esto estoy pasando los datos pertenecientes a la vacante seleccionada 

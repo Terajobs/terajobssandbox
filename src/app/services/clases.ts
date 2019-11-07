@@ -131,7 +131,7 @@ export class Usuario {
     curp:                  string;
     rfc:                   RFC;
     telefono:              string;
-    estado_pais:           number;
+    estado_pais:           string;
     edad:                  number;
     genero:                string;
     foto:                  string;

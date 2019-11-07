@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-// Service
-import { VacanteService } from '../../services/vacante/vacante.service';
-
 // Este me permite usar el envio de parametros entre componentes
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +11,6 @@ import { _appIdRandomProviderFactory } from '@angular/core/src/application_token
   selector: 'app-vacante-detalle',
   templateUrl: './vacante-detalle.component.html',
   styleUrls: ['./vacante-detalle.component.scss'],
-  providers: [VacanteService]
 })
 export class VacanteDetalleComponent implements OnInit {
 
@@ -34,7 +30,6 @@ export class VacanteDetalleComponent implements OnInit {
   campo_justificacion: string;
 
   constructor(
-    private vacanteService: VacanteService,
     private route: ActivatedRoute
     ) {}
 
@@ -48,7 +43,7 @@ export class VacanteDetalleComponent implements OnInit {
   obtieneDatos(){
     this.route.queryParams
     .subscribe(params => {
-      
+      console.log(params);
       this.id = params.id;
       this.id_reclutador = params.id_reclutador;
       this.descripcion = params.descripcion;

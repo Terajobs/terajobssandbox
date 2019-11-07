@@ -98,7 +98,7 @@ export class FirebaseService {
   }
 
   getVacantes() {
-    return new Promise(resolve => {
+    return new Promise<Vacante[]>(resolve => {
       this.fireDatabase.list(this.rutas.vacantes).snapshotChanges().subscribe(actionArray => {
         console.log(actionArray);
         resolve(actionArray.map(item => {
